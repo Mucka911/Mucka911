@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Foundation -->
+<window id="0">
+    <defaultcontrol always="false">3992</defaultcontrol>
+    <onload condition="Window.Previous(VideoFullScreen.xml) | Window.Previous(MusicVisualisation.xml)">SetFocus(301)</onload>
+    <onload condition="Control.HasFocus(301) | Control.HasFocus(303)">SetFocus(3992)</onload>
+    <onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=301&amp;levels=1&amp;group=mainmenu|powermenu|searchmenu)</onload>
+    <onload condition="String.IsEmpty(Window(Home).Property(SkinSplashStarted))">ActivateWindow(1117)</onload>
+    <onunload>ClearProperty(TMDbHelper.WidgetContainer,Home)</onunload>
+    <controls>
+        <control type="list" id="3700">
+            <description>Hidden container for widget count</description>
+            <include>Defs_Hidden_List</include>
+            <content><include>skinshortcuts-submenu-1</include></content>
+        </control>
+        <control type="list" id="3701">
+            <description>Hidden container for grouplist ids</description>
+            <include>Defs_Hidden_List</include>
+            <content><include>skinshortcuts-template-widgetgrouplists</include></content>
+        </control>
+        <control type="list" id="56560">
+            <include>Defs_Offscreen</include>
+            <orientation>horizontal</orientation>
+            <itemlayout />
+            <focusedlayout />
+            <content>
+                <include content="Object_56560_Item">
+                    <param name="listitem" value="Container(3001).ListItem" />
+                    <visible>Integer.IsEqual(Container(3700).NumItems,0)</visible>
+                </include>
+                <include>skinshortcuts-template-infoline</include>
+            </content>
+            <visible>Control.HasFocus(301) | Control.HasFocus(303) | Control.HasFocus(3992) | Control.HasFocus(3101) | Control.HasFocus(3102) | Control.Hasfocus(3001) | Control.HasFocus(302)</visible>
+            <visible>Integer.IsEqual(Container(3700).NumItems,0) | Integer.IsEqual(Container(3700).NumItems,1)</visible>
+        </control>
+
+
+
+        <include>Home_Multi</include>
+        <include>Object_NowPlaying</include>
+        <include>Home_Submenu</include>
+
+    </controls>
+</window>
